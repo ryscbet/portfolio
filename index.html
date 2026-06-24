@@ -1,30 +1,33 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scarlett's Portfolio</title>
-    <!-- Google Fonts for Editorial & Monospace aesthetic -->
+    <!-- Soft, whimsical, and cute Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Gaegu:wght@400;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         /* DESIGN SYSTEM & CUSTOM VARIABLES */
         :root {
-            --bg-color: #fbfbf9;
+            /* Original color palette from text layers & images[cite: 1] */
+            --bg-color: #fbfbf9; 
             --text-color: #111111;
-            --retro-pink: #ff007f;
-            --grungy-warm: #b85a1c;
-            --organic-green: #4a5d4e;
+            --retro-pink: #ff007f;     /* From 0142728eff8ff4a02f1641924a2fc91d.webp */
+            --grungy-warm: #b85a1c;    /* From 05905beaf86411c108d52a32f67a5b9a_2.jpg */
+            --organic-green: #4a5d4e;  /* From 97cdd2e9b32759d6a7c8bd7b5d564988.jpg */
             --card-bg-fallback: #f0efe9;
             
-            --font-display: 'Syne', sans-serif;
-            --font-mono: 'Space Mono', monospace;
+            /* Whimsical, soft typography configuration */
+            --font-display: 'Fredoka', sans-serif; /* Catchy, cute, rounded title font */
+            --font-body: 'Quicksand', sans-serif;   /* Soft, clean sans-serif */
+            --font-hand: 'Gaegu', cursive;         /* Girly, handwritten touch */
             
             --brutalist-border: 2px solid var(--text-color);
             --thick-border: 4px solid var(--text-color);
-            --scrapbook-shadow: 6px 6px 0px rgba(17, 17, 17, 0.15);
+            --scrapbook-shadow: 5px 5px 0px rgba(17, 17, 17, 0.12);
         }
 
         /* RESET & BASE STYLES */
@@ -38,17 +41,15 @@
             scroll-behavior: smooth;
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: var(--font-mono);
+            font-family: var(--font-body);
             font-size: 16px;
         }
 
         body {
             overflow-x: hidden;
-            background-image: radial-gradient(rgba(17, 17, 17, 0.05) 1px, transparent 0);
-            background-size: 24px 24px;
         }
 
-        /* ASYMMETRIC NAVIGATION */
+        /* RESPONSIVE NAVIGATION */
         .editorial-nav {
             position: fixed;
             top: 0;
@@ -58,7 +59,8 @@
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             border-bottom: var(--brutalist-border);
-            background-color: var(--bg-color);
+            background-color: rgba(251, 251, 249, 0.9);
+            backdrop-filter: blur(10px);
             z-index: 100;
         }
 
@@ -69,7 +71,7 @@
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.85rem;
-            letter-spacing: -0.5px;
+            font-family: var(--font-display);
         }
 
         .nav-block:not(:last-child) {
@@ -79,35 +81,38 @@
         .nav-block a {
             color: var(--text-color);
             text-decoration: none;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         .nav-block a:hover {
             color: var(--retro-pink);
+            transform: scale(1.05);
         }
 
-        /* FLOATING POST-IT / SCRAPBOOK NOTES */
+        /* SCRAPBOOK CUTOUT ACCENTS */
         .floating-note {
             position: absolute;
             background-color: #fff7ad;
             border: var(--brutalist-border);
-            padding: 1rem;
-            font-size: 0.75rem;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            font-family: var(--font-hand);
             font-weight: 700;
-            max-width: 160px;
+            max-width: 180px;
             box-shadow: var(--scrapbook-shadow);
             z-index: 10;
             transform: rotate(-3deg);
             pointer-events: none;
-            text-transform: uppercase;
+            border-radius: 12px;
         }
 
         .floating-note.pink {
             background-color: #ffc4e1;
             transform: rotate(4deg);
+            color: var(--retro-pink);
         }
 
-        /* PAGE 1: MAIN LANDING SCREEN */
+        /* PAGE 1: MAIN LANDING SCREEN (WITH BACKGROUND IMAGE OVERLAY) */
         .landing-screen {
             min-height: 100vh;
             display: flex;
@@ -115,17 +120,35 @@
             justify-content: space-between;
             padding: 100px 2rem 2rem 2rem;
             position: relative;
+            z-index: 1;
+        }
+
+        /* Insertable Photo Background Cover Layer */
+        .landing-bg-cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Replace the URL token with your choice photo asset path */
+            background-image: url('insert-your-photo-here.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.12; /* Kept soft and light so typography remains perfectly readable */
+            z-index: -1;
+            pointer-events: none;
         }
 
         .metadata-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             width: 100%;
-            font-size: 0.85rem;
-            text-transform: uppercase;
+            font-size: 0.9rem;
             font-weight: 700;
             border-bottom: var(--brutalist-border);
             padding-bottom: 1rem;
+            font-family: var(--font-display);
+            text-transform: uppercase;
         }
 
         .metadata-block:last-child {
@@ -139,16 +162,16 @@
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(3.5rem, 11vw, 10rem);
-            font-weight: 800;
-            line-height: 0.85;
+            font-size: clamp(3.2rem, 10vw, 9.5rem);
+            font-weight: 700;
+            line-height: 0.9;
             text-transform: uppercase;
-            letter-spacing: -3px;
+            letter-spacing: -1px;
             color: var(--text-color);
         }
 
         .hero-title span {
-            color: var(--grungy-warm);
+            color: var(--retro-pink);
             display: block;
         }
 
@@ -158,8 +181,9 @@
             align-items: flex-end;
             border-top: var(--brutalist-border);
             padding-top: 1rem;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
+            font-family: var(--font-display);
             text-transform: uppercase;
         }
 
@@ -183,10 +207,10 @@
 
         .about-header {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 0.9;
+            font-size: clamp(2.2rem, 4.5vw, 4rem);
+            line-height: 1;
             text-transform: uppercase;
-            letter-spacing: -1px;
+            color: var(--organic-green);
         }
 
         .about-text {
@@ -194,7 +218,6 @@
             line-height: 1.6;
             align-self: center;
             font-weight: 500;
-            text-align: justify;
         }
 
         /* PROJECT TRACK LIST */
@@ -223,7 +246,7 @@
             left: 0;
             width: 100%;
             height: 0%;
-            background-color: var(--text-color);
+            background-color: var(--retro-pink);
             z-index: 1;
             transition: height 0.25s ease;
         }
@@ -237,32 +260,32 @@
         }
 
         .project-row:hover * {
-            color: var(--bg-color);
+            color: #ffffff;
             position: relative;
             z-index: 2;
         }
 
         .project-row:hover .project-num {
-            color: var(--retro-pink);
+            color: #ffffff;
         }
 
         .project-num {
-            font-family: var(--font-mono);
-            font-size: 1.2rem;
+            font-family: var(--font-display);
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--grungy-warm);
         }
 
         .project-meta-title h3 {
             font-family: var(--font-display);
-            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
             text-transform: uppercase;
-            line-height: 1;
+            line-height: 1.1;
             margin-bottom: 0.5rem;
         }
 
         .project-focus-text {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             opacity: 0.8;
             max-width: 600px;
         }
@@ -281,19 +304,20 @@
         }
 
         .tag-pill {
-            font-size: 0.7rem;
-            padding: 0.3rem 0.8rem;
-            border: 1px solid currentColor;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.9rem;
+            border: 2px solid currentColor;
             text-transform: uppercase;
             font-weight: 700;
             border-radius: 20px;
+            font-family: var(--font-display);
         }
 
-        /* PAGE 3: THE INTERRUPTED MATRIX COLLAGE */
+        /* PAGE 3: THE CONNECTED INTERRUPTED MATRIX COLLAGE */
         .matrix-section {
             border-top: var(--thick-border);
             padding: 5rem 2rem;
-            background-color: #f4f3ef;
+            background-color: var(--bg-color);
         }
 
         .matrix-header-box {
@@ -307,23 +331,24 @@
 
         .matrix-header-box h2 {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 6vw, 5rem);
+            font-size: clamp(2rem, 5vw, 4.5rem);
             text-transform: uppercase;
-            line-height: 0.9;
+            line-height: 1;
         }
 
         .collage-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
             grid-auto-flow: row dense;
         }
 
-        @media (max-width: 1024px) { .collage-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 768px) { .collage-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .collage-grid { grid-template-columns: 1fr; } }
+        /* Seamless layout adjustment handling scaling flawlessly */
+        @media (min-width: 1400px) {
+            .collage-grid { grid-template-columns: repeat(4, 1fr); }
+        }
 
-        /* Stylized empty placeholder image slots */
+        /* Cute, soft placeholder image slots with subtle curves */
         .matrix-slot {
             background-color: var(--card-bg-fallback);
             border: var(--brutalist-border);
@@ -332,36 +357,37 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 4px 4px 0px rgba(17,17,17,0.05);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 3px 3px 0px rgba(17,17,17,0.04);
+            border-radius: 16px;
         }
 
         .matrix-slot::before {
-            content: '☉';
-            font-size: 1.5rem;
-            color: rgba(17, 17, 17, 0.15);
+            content: '✿';
+            font-size: 1.8rem;
+            color: rgba(17, 17, 17, 0.12);
         }
 
         .matrix-slot::after {
             content: attr(data-index);
             position: absolute;
-            bottom: 0.5rem;
-            right: 0.5rem;
-            font-size: 0.7rem;
-            color: rgba(17, 17, 17, 0.4);
+            bottom: 0.6rem;
+            right: 0.8rem;
+            font-size: 0.75rem;
+            color: rgba(17, 17, 17, 0.3);
             font-weight: 700;
         }
 
         .matrix-slot:hover {
-            transform: translateY(-4px);
+            transform: scale(1.03);
             box-shadow: var(--scrapbook-shadow);
-            background-color: var(--bg-color);
+            background-color: #ffffff;
             border-color: var(--retro-pink);
         }
 
-        /* Varied aspect sizing grids for editorial design */
         .slot-tall { grid-row: span 2; min-height: 580px; }
         .slot-wide { grid-column: span 2; }
+        @media (max-width: 600px) { .slot-wide { grid-column: span 1; } }
 
         /* THE DISRUPTION BLOCKS */
         .matrix-disruption {
@@ -376,14 +402,12 @@
             min-height: 280px;
             box-shadow: var(--scrapbook-shadow);
             position: relative;
+            border-radius: 20px;
         }
 
-        @media (max-width: 480px) { .matrix-disruption { grid-column: span 1; } }
+        @media (max-width: 600px) { .matrix-disruption { grid-column: span 1; } }
 
-        .matrix-disruption.green-variant {
-            background-color: var(--organic-green);
-        }
-
+        .matrix-disruption.green-variant { background-color: var(--organic-green); }
         .matrix-disruption.pink-variant {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -391,25 +415,25 @@
         }
 
         .disruption-tag {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px dashed currentColor;
+            font-family: var(--font-display);
+            border-bottom: 2px dashed currentColor;
             padding-bottom: 2px;
             align-self: flex-start;
         }
 
         .disruption-title {
             font-family: var(--font-display);
-            font-size: 2rem;
+            font-size: 2.2rem;
             text-transform: uppercase;
-            margin: 1.5rem 0 0.5rem 0;
+            margin: 1.2rem 0 0.5rem 0;
             line-height: 1;
         }
 
         .disruption-desc {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             opacity: 0.9;
             margin-bottom: 1.5rem;
         }
@@ -418,39 +442,28 @@
             background: transparent;
             border: 2px solid currentColor;
             color: inherit;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 0.5rem 1.2rem;
+            padding: 0.5rem 1.4rem;
             cursor: pointer;
             width: fit-content;
             transition: all 0.2s ease;
+            border-radius: 30px;
         }
 
         .disruption-action-btn:hover {
             background-color: var(--retro-pink);
             color: white;
             border-color: var(--retro-pink);
+            transform: scale(1.05);
         }
 
-        /* EXTENSION MECHANICS */
-        .extended-matrix-wrapper {
-            display: none;
-            grid-column: 1 / -1;
-            margin-top: 1.5rem;
+        /* INLINE DIRECTLY CONNECTED EXPANSION ARCHITECTURE */
+        .extended-matrix-stream {
+            display: none; /* Controlled inline directly inside parent container flow via runtime state manipulation */
         }
-        
-        .extended-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            width: 100%;
-        }
-
-        @media (max-width: 1024px) { .extended-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 768px) { .extended-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .extended-grid { grid-template-columns: 1fr; } }
 
         .expansion-control-container {
             grid-column: 1 / -1;
@@ -465,16 +478,18 @@
             border: var(--brutalist-border);
             font-family: var(--font-display);
             font-size: 1.2rem;
-            font-weight: 800;
+            font-weight: 700;
             text-transform: uppercase;
             padding: 1.2rem 3.5rem;
             cursor: pointer;
             box-shadow: var(--scrapbook-shadow);
             transition: all 0.2s ease;
+            border-radius: 40px;
         }
 
         .expand-action-trigger:hover {
             background-color: var(--retro-pink);
+            color: #ffffff;
             transform: translateY(-2px);
         }
 
@@ -487,21 +502,21 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 90vh;
+            min-height: 70vh;
         }
 
         .contact-header-title {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 9vw, 8rem);
+            font-size: clamp(2.8rem, 8vw, 7rem);
             text-transform: uppercase;
-            line-height: 0.85;
-            letter-spacing: -2px;
+            line-height: 0.9;
             margin-bottom: 4rem;
+            color: #ffffff;
         }
 
         .contact-links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
             border-top: 1px solid #333333;
             padding-top: 3rem;
@@ -509,16 +524,16 @@
         }
 
         .contact-channel h4 {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            color: #777777;
+            color: #888888;
             margin-bottom: 1rem;
-            letter-spacing: 1px;
+            font-family: var(--font-display);
         }
 
         .contact-channel a, .contact-channel p {
             font-family: var(--font-display);
-            font-size: clamp(1.4rem, 3vw, 2.5rem);
+            font-size: clamp(1.3rem, 2.8vw, 2.2rem);
             color: var(--bg-color);
             text-decoration: none;
             word-break: break-all;
@@ -532,16 +547,15 @@
         .credit-provenance-footer {
             border-top: 1px solid #222222;
             padding-top: 2rem;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             line-height: 1.6;
             color: #666666;
-            text-transform: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- ASYMMETRIC NAVIGATION BAR -->
+    <!-- ASYMMETRIC NAV -->
     <nav class="editorial-nav">
         <div class="nav-block"><a href="#landing-page">Scarlett Yang</a></div>
         <div class="nav-block"><a href="#projects-index">Index</a></div>
@@ -552,13 +566,15 @@
         
         <!-- PAGE 1: MAIN LANDING SCREEN -->
         <section id="landing-page" class="landing-screen">
-            <!-- Floating post-it notes simulating digital scrapbook overlays -->
-            <div class="floating-note" style="top: 25%; right: 15%;">[ Portfolio Vol. 4 ]</div>
-            <div class="floating-note pink" style="bottom: 30%; left: 8%;">DO NOT SCALE //</div>
+            <!-- Insertable Photo Layer -->
+            <div class="landing-bg-cover"></div>
+
+            <div class="floating-note" style="top: 25%; right: 12%;">[ Visual Journal ]</div>
+            <div class="floating-note pink" style="bottom: 28%; left: 6%;">Say hello! ✿</div>
 
             <div class="metadata-grid">
                 <div class="metadata-block">Creative Direction & Frameworks</div>
-                <div class="metadata-block">Loc: Hong Kong // Kowloon</div>
+                <div class="metadata-block">Hong Kong // Kowloon</div>
             </div>
 
             <div class="hero-title-wrapper">
@@ -566,8 +582,8 @@
             </div>
 
             <div class="landing-footer-meta">
-                <div>Visual Documentations</div>
-                <div>©2026 Structured Timeline</div>
+                <div>Selected Documentations</div>
+                <div>©2026 Grid System</div>
             </div>
         </section>
 
@@ -575,9 +591,9 @@
         <section id="projects-index" class="about-projects-screen">
             
             <div class="about-section">
-                <h2 class="about-header">A curation of spatial energy and human dynamics.</h2>
+                <h2 class="about-header">A whimsical look through people, frames, and places.</h2>
                 <p class="about-text">
-                    Operating at the intersection of print layouts and continuous grid ecosystems, this interface showcases captured moments contextually framed within four creative pillars.
+                    Operating at the intersection of intentional layout tracks and fluid layout configurations, this site displays ongoing photo series across four distinct directions[cite: 1].
                 </p>
             </div>
 
@@ -587,10 +603,10 @@
                     <div class="project-num">01 /</div>
                     <div class="project-meta-title">
                         <h3>CaptureKind</h3>
-                        <p class="project-focus-text">Volunteer photography for events, projects, and organizations impacting people and the earth for a positive change.</p>
+                        <p class="project-focus-text">Volunteer photography for events, projects, and organizations impacting people and the earth for a positive change[cite: 1].</p>
                     </div>
                     <div class="project-tags">
-                        <span class="tag-pill">Humanitarian</span>
+                        <span class="tag-pill">Volunteer</span>
                         <span class="tag-pill">Impact</span>
                     </div>
                 </div>
@@ -600,7 +616,7 @@
                     <div class="project-num">02 /</div>
                     <div class="project-meta-title">
                         <h3>CaptureVibe</h3>
-                        <p class="project-focus-text">Event photography capturing energy, motion, split-second configurations, and authentic crowd communications.</p>
+                        <p class="project-focus-text">Event photography capturing energy, motion, split-second snapshots, and genuine group interactions[cite: 1].</p>
                     </div>
                     <div class="project-tags">
                         <span class="tag-pill">Events</span>
@@ -613,11 +629,11 @@
                     <div class="project-num">03 /</div>
                     <div class="project-meta-title">
                         <h3>CaptureCations</h3>
-                        <p class="project-focus-text">A spatial layout document capturing locations, architectural boundaries, industrial cities, and nature.</p>
+                        <p class="project-focus-text">A spatial collection dedicated to locations, cityscape structures, environments, and nature[cite: 1].</p>
                     </div>
                     <div class="project-tags">
-                        <span class="tag-pill">Architecture</span>
                         <span class="tag-pill">Spaces</span>
+                        <span class="tag-pill">Locations</span>
                     </div>
                 </div>
 
@@ -626,108 +642,104 @@
                     <div class="project-num">04 /</div>
                     <div class="project-meta-title">
                         <h3>CaptureYou</h3>
-                        <p class="project-focus-text">Identity framings centered on creative, specialized professional and deeply intimate candid portraiture.</p>
+                        <p class="project-focus-text">Identity framings centered around close portraits and beautiful candid portrait sessions[cite: 1].</p>
                     </div>
                     <div class="project-tags">
-                        <span class="tag-pill">Portraiture</span>
+                        <span class="tag-pill">Portraits</span>
                         <span class="tag-pill">Candid</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PAGE 3: THE INTERRUPTED MATRIX COLLAGE -->
+        <!-- PAGE 3: THE CONNECTED INTERRUPTED MATRIX COLLAGE -->
         <section id="matrix-view" class="matrix-section">
             
             <div class="matrix-header-box">
-                <h2>The Matrix Grid</h2>
-                <div class="project-num" style="font-size: 0.9rem;">Initial Frame Array (22 Slots)</div>
+                <h2>The Photo Grid</h2>
+                <div class="project-num" style="font-size: 0.95rem;">Matrix Stream (20-26 Elements)</div>
             </div>
 
+            <!-- Single coherent connected grid framework -->
             <div class="collage-grid">
-                <!-- Initial base set of empty placeholders interspersed with 4 statement interruptions -->
-                <div class="matrix-slot" data-index="Ø-01"></div>
-                <div class="matrix-slot slot-tall" data-index="Ø-02"></div>
-                <div class="matrix-slot" data-index="Ø-03"></div>
-                <div class="matrix-slot slot-wide" data-index="Ø-04"></div>
+                <div class="matrix-slot" data-index="✿-01"></div>
+                <div class="matrix-slot slot-tall" data-index="✿-02"></div>
+                <div class="matrix-slot" data-index="✿-03"></div>
+                <div class="matrix-slot slot-wide" data-index="✿-04"></div>
                 
                 <!-- DISRUPTION 1 -->
                 <div class="matrix-disruption" id="disruption-1">
-                    <div class="disruption-tag">Disruption Track 01</div>
+                    <div class="disruption-tag">Series Break 01</div>
                     <div>
                         <h3 class="disruption-title">CaptureKind</h3>
-                        <p class="disruption-desc">Impact focus timeline injection block.</p>
+                        <p class="disruption-desc">Humanitarian stories and earth initiatives project segment[cite: 1].</p>
                     </div>
-                    <button class="disruption-action-btn" onclick="alert('Isolating CaptureKind Stream')">Isolate Core</button>
+                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureKind assets')">Isolate Series</button>
                 </div>
 
-                <div class="matrix-slot" data-index="Ø-05"></div>
-                <div class="matrix-slot" data-index="Ø-06"></div>
-                <div class="matrix-slot slot-wide" data-index="Ø-07"></div>
+                <div class="matrix-slot" data-index="✿-05"></div>
+                <div class="matrix-slot" data-index="✿-06"></div>
+                <div class="matrix-slot slot-wide" data-index="✿-07"></div>
                 
                 <!-- DISRUPTION 2 -->
                 <div class="matrix-disruption green-variant" id="disruption-2">
-                    <div class="disruption-tag">Disruption Track 02</div>
+                    <div class="disruption-tag">Series Break 02</div>
                     <div>
                         <h3 class="disruption-title">CaptureVibe</h3>
-                        <p class="disruption-desc">Crowd dynamics and spatial energy sync.</p>
+                        <p class="disruption-desc">Genuine event frames and candid group dynamics track[cite: 1].</p>
                     </div>
-                    <button class="disruption-action-btn" onclick="alert('Isolating CaptureVibe Stream')">Isolate Core</button>
+                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureVibe assets')">Isolate Series</button>
                 </div>
 
-                <div class="matrix-slot slot-tall" data-index="Ø-08"></div>
-                <div class="matrix-slot" data-index="Ø-09"></div>
-                <div class="matrix-slot" data-index="Ø-10"></div>
-                <div class="matrix-slot" data-index="Ø-11"></div>
+                <div class="matrix-slot slot-tall" data-index="✿-08"></div>
+                <div class="matrix-slot" data-index="✿-09"></div>
+                <div class="matrix-slot" data-index="✿-10"></div>
+                <div class="matrix-slot" data-index="✿-11"></div>
 
                 <!-- DISRUPTION 3 -->
                 <div class="matrix-disruption pink-variant" id="disruption-3">
-                    <div class="disruption-tag" style="border-bottom-style: solid;">Disruption Track 03</div>
+                    <div class="disruption-tag">Series Break 03</div>
                     <div>
                         <h3 class="disruption-title">CaptureCations</h3>
-                        <p class="disruption-desc">Structural forms and architectural lines layout.</p>
+                        <p class="disruption-desc">Architecture layout focus and spatial study logs[cite: 1].</p>
                     </div>
-                    <button class="disruption-action-btn" onclick="alert('Isolating CaptureCations Stream')">Isolate Core</button>
+                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureCations assets')">Isolate Series</button>
                 </div>
 
-                <div class="matrix-slot slot-wide" data-index="Ø-12"></div>
-                <div class="matrix-slot" data-index="Ø-13"></div>
-                <div class="matrix-slot slot-tall" data-index="Ø-14"></div>
+                <div class="matrix-slot slot-wide" data-index="✿-12"></div>
+                <div class="matrix-slot" data-index="✿-13"></div>
+                <div class="matrix-slot slot-tall" data-index="✿-14"></div>
 
                 <!-- DISRUPTION 4 -->
                 <div class="matrix-disruption" id="disruption-4">
-                    <div class="disruption-tag">Disruption Track 04</div>
+                    <div class="disruption-tag">Series Break 04</div>
                     <div>
                         <h3 class="disruption-title">CaptureYou</h3>
-                        <p class="disruption-desc">Candid human portrait integration layer.</p>
+                        <p class="disruption-desc">Candid human portrait integration stream[cite: 1].</p>
                     </div>
-                    <button class="disruption-action-btn" onclick="alert('Isolating CaptureYou Stream')">Isolate Core</button>
+                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureYou assets')">Isolate Series</button>
                 </div>
 
-                <div class="matrix-slot" data-index="Ø-15"></div>
-                <div class="matrix-slot" data-index="Ø-16"></div>
-                <div class="matrix-slot" data-index="Ø-17"></div>
-                <div class="matrix-slot slot-wide" data-index="Ø-18"></div>
+                <div class="matrix-slot" data-index="✿-15"></div>
+                <div class="matrix-slot" data-index="✿-16"></div>
+                <div class="matrix-slot" data-index="✿-17"></div>
+                <div class="matrix-slot slot-wide" data-index="✿-18"></div>
 
-                <!-- EXTENDED CONTAINER OBJECT (Smoothly loads additional layout blocks dynamically via state toggling) -->
-                <div class="extended-matrix-wrapper" id="extended-matrix-block">
-                    <div class="extended-grid">
-                        <div class="matrix-slot" data-index="Ø-19"></div>
-                        <div class="matrix-slot slot-wide" data-index="Ø-20"></div>
-                        <div class="matrix-slot" data-index="Ø-21"></div>
-                        <div class="matrix-slot slot-tall" data-index="Ø-22"></div>
-                        <div class="matrix-slot" data-index="Ø-23"></div>
-                        <div class="matrix-slot" data-index="Ø-24"></div>
-                        <div class="matrix-slot slot-wide" data-index="Ø-25"></div>
-                        <div class="matrix-slot" data-index="Ø-26"></div>
-                        <div class="matrix-slot" data-index="Ø-27"></div>
-                        <div class="matrix-slot" data-index="Ø-28"></div>
-                        <div class="matrix-slot" data-index="Ø-29"></div>
-                        <div class="matrix-slot slot-tall" data-index="Ø-30"></div>
-                    </div>
-                </div>
+                <!-- CONTINUOUS REVELATION TILES (Directly embedded inside same grid structure) -->
+                <div class="matrix-slot extended-matrix-stream" data-index="✿-19"></div>
+                <div class="matrix-slot slot-wide extended-matrix-stream" data-index="✿-20"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✿-21"></div>
+                <div class="matrix-slot slot-tall extended-matrix-stream" data-index="✿-22"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✿-23"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✿-24"></div>
+                <div class="matrix-slot slot-wide extended-matrix-stream" data-index="✿-25"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✿-26"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✿-27"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✿-28"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✿-29"></div>
+                <div class="matrix-slot slot-tall extended-matrix-stream" data-index="✿-30"></div>
 
-                <!-- DYNAMIC EXPANSION CONTROLLER BUTTON -->
+                <!-- CONTROL ROW TRIGGER -->
                 <div class="expansion-control-container">
                     <button id="matrix-expansion-trigger" class="expand-action-trigger" onclick="toggleMatrixExpansion()">Expand Matrix</button>
                 </div>
@@ -738,25 +750,25 @@
         <!-- PAGE 4: CONTACT SCREEN -->
         <footer id="contact-gate" class="contact-footer-screen">
             <div class="contact-top-wrapper">
-                <h2 class="contact-header-title">Let's build<br>something real.</h2>
+                <h2 class="contact-header-title">Let's create<br>together ✿</h2>
                 
                 <div class="contact-links-grid">
                     <div class="contact-channel">
-                        <h4>Direct Signal</h4>
+                        <h4>Direct Line</h4>
                         <p><a href="tel:+85253403935">+852 53403935</a></p>
                     </div>
                     <div class="contact-channel">
-                        <h4>Digital Mailbox</h4>
+                        <h4>Email Intake</h4>
                         <p><a href="mailto:SCARLETTYANG.RS@GMAIL.COM">SCARLETTYANG.RS@GMAIL.COM</a></p>
                     </div>
                     <div class="contact-channel">
-                        <h4>Coordinates</h4>
-                        <p>22.3193° N, 114.1694° E</p>
+                        <h4>Studio Base</h4>
+                        <p>Hong Kong (Kowloon)</p>
                     </div>
                 </div>
             </div>
 
-            <!-- MONOSPACE PROVENANCE FOOTER -->
+            <!-- SPECIFIED PROVENANCE ACCREDITATION -->
             <div class="credit-provenance-footer">
                 Informed by: 5a58d3cf1b3ce97eede6048f7237bc6c_2.jpg, 48e014ad105d05a0bcb8f2cc8b3486d4_2.webp, 188b7f880cc08d39540e64450f5b7b90_2.webp, 05905beaf86411c108d52a32f67a5b9a_2.jpg, 75f5f76d70f3d359b96b84a0823a2f7f.jpg, 97cdd2e9b32759d6a7c8bd7b5d564988.jpg, and 0142728eff8ff4a02f1641924a2fc91d.webp
             </div>
@@ -764,22 +776,28 @@
 
     </main>
 
-    <!-- VANILLA RUNTIME JAVASCRIPT MECHANICS -->
+    <!-- EXPANSION RUNTIME ARCHITECTURE -->
     <script>
         let isMatrixExpandedState = false;
 
         function toggleMatrixExpansion() {
-            const extendedWrapper = document.getElementById('extended-matrix-block');
+            // Select elements targeting connected grid expansion items directly
+            const extraSlots = document.querySelectorAll('.extended-matrix-stream');
             const expansionBtn = document.getElementById('matrix-expansion-trigger');
 
             if (!isMatrixExpandedState) {
-                // Change UI container mapping state smoothly
-                extendedWrapper.style.display = 'block';
+                // Smooth change to standard display within same element framework
+                extraSlots.forEach(slot => {
+                    slot.style.display = 'flex';
+                });
                 expansionBtn.innerText = 'Collapse Matrix';
-                extendedWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Targets the first newly loaded slot for a seamless view adjustment
+                extraSlots[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
                 isMatrixExpandedState = true;
             } else {
-                extendedWrapper.style.display = 'none';
+                extraSlots.forEach(slot => {
+                    slot.style.display = 'none';
+                });
                 expansionBtn.innerText = 'Expand Matrix';
                 document.getElementById('matrix-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 isMatrixExpandedState = false;
