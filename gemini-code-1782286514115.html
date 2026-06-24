@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scarlett's Portfolio</title>
+    <style>
+        /* CSS RESET & DESIGN SYSTEM */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-color: #f9f8f4; /* Off-white gallery wall canvas inspired by 48e014ad105d05a0bcb8f2cc8b3486d4.webp */
+            --text-color: #111111;
+            --accent-yellow: #f1c40f; /* Grungy yellow vibe from 05905beaf86411c108d52a32f67a5b9a.jpg */
+            --border-color: #111111;
+            --gray-meta: #555555;
+            --font-display: "Courier New", Courier, monospace; /* Monospace design roots from 5a58d3cf1b3ce97eede6048f7237bc6c.jpg */
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        /* CUSTOM UTILITIES Inspired by Brutalist Typography in 188b7f880cc08d39540e64450f5b7b90.webp */
+        .pixel-heading {
+            font-family: var(--font-display);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            word-wrap: break-word;
+        }
+
+        .meta-text {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            color: var(--gray-meta);
+            text-transform: uppercase;
+        }
+
+        /* GLOBAL STARK BORDERS */
+        .stark-border-top { border-top: 2px solid var(--border-color); }
+        .stark-border-bottom { border-bottom: 2px solid var(--border-color); }
+        .stark-border-left { border-left: 2px solid var(--border-color); }
+        .stark-border-right { border-right: 2px solid var(--border-color); }
+
+        /* NAVIGATION SYSTEM */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            z-index: 1000;
+            mix-blend-mode: difference;
+            color: #ffffff;
+        }
+
+        nav a {
+            color: inherit;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* SECTION 1: LANDING MAIN SCREEN */
+        #landing {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 6rem 2rem 2rem 2rem;
+            position: relative;
+            background-color: #111111;
+            color: #f9f8f4;
+        }
+
+        .landing-hero {
+            margin-auto: 0;
+            max-width: 1200px;
+            width: 100%;
+            align-self: center;
+            padding-top: 10vh;
+        }
+
+        .landing-hero h1 {
+            font-size: clamp(3.5rem, 10vw, 8.5rem);
+            line-height: 0.85;
+            margin-bottom: 2rem;
+            font-family: var(--font-display);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -4px;
+        }
+
+        .landing-hero h1 span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 2px #f9f8f4;
+        }
+
+        .landing-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+            border-top: 1px solid #333333;
+            padding-top: 1.5rem;
+        }
+
+        .landing-footer-left {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            max-width: 400px;
+            color: #bbbbbb;
+        }
+
+        /* SECTION 2: FOUR PROJECTS PAGE */
+        #projects-page {
+            min-height: 100vh;
+            padding: 5rem 0 0 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-header-strip {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        .page-header-strip h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .project-card {
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-bottom: 2px solid var(--border-color);
+            border-right: 2px solid var(--border-color);
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-yellow);
+            z-index: 1;
+            transform: translateY(101%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover::before {
+            transform: translateY(0);
+        }
+
+        .project-card * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-index {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .project-title {
+            font-size: 2.2rem;
+            font-family: var(--font-display);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            max-width: 90%;
+            margin-bottom: 3rem;
+        }
+
+        .project-action {
+            align-self: flex-start;
+            font-family: var(--font-display);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--text-color);
+            padding-bottom: 2px;
+            cursor: pointer;
+        }
+
+        /* SECTION 3: GENERAL COLLAGE WITH DYNAMIC INTERRUPTIONS */
+        #collage-page {
+            padding: 5rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .collage-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            grid-auto-flow: row dense;
+        }
+
+        /* Placeholder image asset styling mimicking visual references */
+        .photo-slot {
+            background-color: #e2dfd5;
+            border: 2px solid var(--border-color);
+            position: relative;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-slot::after {
+            content: 'IMAGE SLOT';
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            color: #888888;
+            letter-spacing: 1px;
+        }
+
+        .photo-slot:hover {
+            transform: scale(1.02);
+        }
+
+        /* Grid Item Variations for Editorial Asymmetry (188b7f880cc08d39540e64450f5b7b90.webp) */
+        .slot-tall { grid-row: span 2; min-height: 520px; }
+        .slot-wide { grid-column: span 2; }
+        .slot-large { grid-column: span 2; grid-row: span 2; min-height: 520px; }
+
+        /* COLLAGE INTERRUPTIONS (Typographic Statement Blocks) */
+        .collage-interrupt {
+            grid-column: span 2;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .collage-interrupt.alt-vibe {
+            background-color: var(--accent-yellow);
+            color: var(--text-color);
+        }
+
+        .collage-interrupt h3 {
+            font-size: 2rem;
+            font-family: var(--font-display);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .collage-interrupt p {
+            font-size: 0.85rem;
+            font-family: var(--font-display);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .collage-btn {
+            background: transparent;
+            border: 2px solid currentColor;
+            color: inherit;
+            padding: 0.6rem 1.2rem;
+            font-family: var(--font-display);
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .collage-btn:hover {
+            background-color: currentColor;
+            color: var(--text-color);
+        }
+
+        .collage-interrupt.alt-vibe .collage-btn:hover {
+            color: var(--bg-color);
+        }
+
+        /* Expand/Collapse Container mechanics */
+        .hidden-slots {
+            display: none;
+            grid-column: span 4;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .expand-wrapper {
+            grid-column: span 4;
+            display: flex;
+            justify-content: center;
+            padding: 4rem 0;
+        }
+
+        .macro-expand-btn {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 1.5rem 4rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .macro-expand-btn:hover {
+            background-color: var(--accent-yellow);
+            color: var(--text-color);
+        }
+
+        /* SECTION 4: CONTACT SCREEN */
+        #contact-page {
+            min-height: 80vh;
+            background-color: #111111;
+            color: #f9f8f4;
+            padding: 6rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-main h2 {
+            font-size: clamp(2.5rem, 8vw, 6.5rem);
+            font-family: var(--font-display);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            margin-bottom: 4rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            border-top: 1px solid #333333;
+            padding-top: 3rem;
+        }
+
+        .contact-block h4 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            color: #888888;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-block a, .contact-block p {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #f9f8f4;
+            text-decoration: none;
+            font-family: var(--font-display);
+            word-break: break-all;
+        }
+
+        .moodboard-credits {
+            margin-top: 5rem;
+            border-top: 1px solid #222222;
+            padding-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            opacity: 0.4;
+        }
+
+        /* RESPONSIVE DESIGN BREAKPOINTS */
+        @media (max-width: 1024px) {
+            .collage-grid { grid-template-columns: repeat(3, 1fr); }
+            .hidden-slots { grid-template-columns: repeat(3, 1fr); grid-column: span 3; }
+            .expand-wrapper { grid-column: span 3; }
+            .collage-interrupt, .slot-wide, .slot-large { grid-column: span 3; }
+        }
+
+        @media (max-width: 768px) {
+            .collage-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .hidden-slots { grid-template-columns: repeat(2, 1fr); grid-column: span 2; gap: 1rem; }
+            .expand-wrapper { grid-column: span 2; }
+            .collage-interrupt, .slot-wide, .slot-large { grid-column: span 2; }
+            .slot-tall, .slot-large { min-height: 400px; }
+            #collage-page { padding: 3rem 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .collage-grid { grid-template-columns: 1fr; }
+            .hidden-slots { grid-template-columns: 1fr; grid-column: span 1; }
+            .expand-wrapper { grid-column: span 1; }
+            .collage-interrupt, .slot-wide, .slot-large { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <a href="#landing">SCARLETT</a>
+        <a href="#contact-page">GET IN TOUCH</a>
+    </nav>
+
+    <!-- MAIN LANDING SCREEN -->
+    <section id="landing">
+        <div class="landing-hero">
+            <p class="meta-text" style="color: var(--accent-yellow); margin-bottom: 1rem;">[ PHOTOGRAPHY PORTFOLIO ]</p>
+            <h1>SCARLETT'S<br><span>PORTFOLIO</span></h1>
+        </div>
+        
+        <div class="landing-footer">
+            <div class="landing-footer-left">
+                AN INTENTIONAL VISUAL TIMELINE DOCUMENTING PEOPLE, ENERGY, ARCHITECTURE, AND EARTH[cite: 1].
+            </div>
+            <div class="meta-text" style="color: #888888;">
+                HKG // 2026 // EST
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUR PROJECTS PAGE -->
+    <section id="projects-page">
+        <div class="page-header-strip stark-border-bottom">
+            <h2 class="pixel-heading">SELECTED VISUAL DIRECTIONS</h2>
+            <span class="meta-text">[ CORE INDEX ]</span>
+        </div>
+
+        <div class="projects-container">
+            <!-- PROJECT 1 -->
+            <div class="project-card" onclick="document.getElementById('interrupt-kind').scrollIntoView({behavior: 'smooth'});">
+                <div>
+                    <div class="project-index">01 //</div>
+                    <h3 class="project-title">CaptureKind</h3>
+                    <p class="project-desc">Volunteer photography for events, projects, and organizations impacting people and the earth for a positive change[cite: 1].</p>
+                </div>
+                <div class="project-action">View Section Grid</div>
+            </div>
+
+            <!-- PROJECT 2 -->
+            <div class="project-card" onclick="document.getElementById('interrupt-vibe').scrollIntoView({behavior: 'smooth'});">
+                <div>
+                    <div class="project-index">02 //</div>
+                    <h3 class="project-title">CaptureVibe</h3>
+                    <p class="project-desc">Event photography executed to capture the split-second moment, translate raw energy, feel the picture, and commemorate the collective vibe[cite: 1].</p>
+                </div>
+                <div class="project-action">View Section Grid</div>
+            </div>
+
+            <!-- PROJECT 3 -->
+            <div class="project-card" onclick="document.getElementById('interrupt-cations').scrollIntoView({behavior: 'smooth'});">
+                <div>
+                    <div class="project-index">03 //</div>
+                    <h3 class="project-title">CaptureCations</h3>
+                    <p class="project-desc">A continuous landscape and spatial project capturing structural locations in deep appreciation for cities, architecture, and nature[cite: 1].</p>
+                </div>
+                <div class="project-action">View Section Grid</div>
+            </div>
+
+            <!-- PROJECT 4 -->
+            <div class="project-card" onclick="document.getElementById('interrupt-you').scrollIntoView({behavior: 'smooth'});">
+                <div>
+                    <div class="project-index">04 //</div>
+                    <h3 class="project-title">CaptureYou</h3>
+                    <p class="project-desc">A focused study on identity, framing people across specialized sets through formal professional portraits or intimate candid captures[cite: 1].</p>
+                </div>
+                <div class="project-action">View Section Grid</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GENERAL COLLAGE DISPLAY PAGE -->
+    <section id="collage-page">
+        <div class="collage-grid">
+            
+            <!-- INITIAL BATCH (20-26 PHOTO PLACES & 4 TYPOGRAPHIC PROJECT PLATES INTERRUPTING) -->
+            <div class="photo-slot slot-wide"></div>
+            <div class="photo-slot"></div>
+            <div class="photo-slot slot-tall"></div>
+            
+            <div class="photo-slot"></div>
+            <div class="photo-slot slot-large"></div>
+            
+            <!-- INTERRUPTION 1: CAPTUREKIND -->
+            <div class="collage-interrupt" id="interrupt-kind">
+                <span class="meta-text" style="color: var(--accent-yellow); margin-bottom: 0.5rem;">[ FOCUS DISRUPTION 01 ]</span>
+                <h3>CAPTUREKIND</h3>
+                <p>Global humanitarian and environmental initiative coverage[cite: 1].</p>
+                <button class="collage-btn" onclick="alert('Filtering stream for CaptureKind assets.')">Isolate Focus</button>
+            </div>
+
+            <div class="photo-slot"></div>
+            <div class="photo-slot slot-wide"></div>
+            <div class="photo-slot"></div>
+            <div class="photo-slot slot-tall"></div>
+            <div class="photo-slot"></div>
+
+            <!-- INTERRUPTION 2: CAPTUREVIBE -->
+            <div class="collage-interrupt alt-vibe" id="interrupt-vibe">
+                <span class="meta-text" style="color: var(--text-color); margin-bottom: 0.5rem;">[ FOCUS DISRUPTION 02 ]</span>
+                <h3>CAPTUREVIBE</h3>
+                <p>Pure raw event frame capturing genuine crowd dynamics[cite: 1].</p>
+                <button class="collage-btn" onclick="alert('Filtering stream for CaptureVibe assets.')">Isolate Focus</button>
+            </div>
+
+            <div class="photo-slot slot-large"></div>
+            <div class="photo-slot"></div>
+            <div class="photo-slot"></div>
+            <div class="photo-slot slot-wide"></div>
+
+            <!-- INTERRUPTION 3: CAPTURECATIONS -->
+            <div class="collage-interrupt" id="interrupt-cations">
+                <span class="meta-text" style="color: var(--accent-yellow); margin-bottom: 0.5rem;">[ FOCUS DISRUPTION 03 ]</span>
+                <h3>CAPTURECATIONS</h3>
+                <p>An architectural view across heavy monolithic structures[cite: 1].</p>
+                <button class="collage-btn" onclick="alert('Filtering stream for CaptureCations assets.')">Isolate Focus</button>
+            </div>
+
+            <div class="photo-slot"></div>
+            <div class="photo-slot slot-tall"></div>
+            <div class="photo-slot"></div>
+            <div class="photo-slot"></div>
+            <div class="photo-slot slot-wide"></div>
+
+            <!-- INTERRUPTION 4: CAPTUREYOU -->
+            <div class="collage-interrupt alt-vibe" id="interrupt-you">
+                <span class="meta-text" style="color: var(--text-color); margin-bottom: 0.5rem;">[ FOCUS DISRUPTION 04 ]</span>
+                <h3>CAPTUREYOU</h3>
+                <p>Candid close-ups and professional layout portraiture[cite: 1].</p>
+                <button class="collage-btn" onclick="alert('Filtering stream for CaptureYou assets.')">Isolate Focus</button>
+            </div>
+
+            <div class="photo-slot"></div>
+            <div class="photo-slot"></div>
+            <div class="photo-slot slot-wide"></div>
+
+            <!-- EXPANDABLE EXTRA SLOTS CONTAINER (30-40 IMAGES COMPREHENSIVE TIMELINE) -->
+            <div class="hidden-slots" id="extended-gallery-slots">
+                <div class="photo-slot"></div>
+                <div class="photo-slot slot-tall"></div>
+                <div class="photo-slot slot-wide"></div>
+                <div class="photo-slot"></div>
+                <div class="photo-slot"></div>
+                <div class="photo-slot slot-large"></div>
+                <div class="photo-slot"></div>
+                <div class="photo-slot slot-wide"></div>
+                <div class="photo-slot"></div>
+                <div class="photo-slot"></div>
+                <div class="photo-slot slot-tall"></div>
+                <div class="photo-slot"></div>
+                <div class="photo-slot"></div>
+                <div class="photo-slot"></div>
+            </div>
+
+            <!-- MACRO INTERACTIVE TOGGLE ELEMENT -->
+            <div class="expand-wrapper">
+                <button class="macro-expand-btn" id="gallery-toggle-action" onclick="toggleExtendedGalleryItems()">Expand Matrix View</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SCREEN PAGE -->
+    <section id="contact-page">
+        <div class="contact-main">
+            <p class="meta-text" style="color: var(--accent-yellow); margin-bottom: 1.5rem;">[ CALL TO ACTION ]</p>
+            <h2>LET'S CAPTURE SOMETHING REAL</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-block">
+                    <h4>Direct Secure Wire</h4>
+                    <p><a href="tel:+85253403935">+852 53403935</a></p>
+                </div>
+                <div class="contact-block">
+                    <h4>Electronic Mail Intake</h4>
+                    <p><a href="mailto:SCARLETTYANG.RS@GMAIL.COM">SCARLETTYANG.RS@GMAIL.COM</a></p>
+                </div>
+                <div class="contact-block">
+                    <h4>Base Location Coordinates</h4>
+                    <p style="font-size: 1.5rem;">HONG KONG (KOWLOON)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- INSIGHT DESIGN PROVENANCE LOGS -->
+        <div class="moodboard-credits">
+            <span class="meta-text">Design Direction Inferences:</span>
+            <span class="meta-text">Ref://5a58d3cf1b3ce97eede6048f7237bc6c.jpg (Monospace Editorial Wireframing)</span>
+            <span class="meta-text">Ref://48e014ad105d05a0bcb8f2cc8b3486d4.webp (Organic Fragment Layering)</span>
+            <span class="meta-text">Ref://188b7f880cc08d39540e64450f5b7b90.webp (Stark Brutalist Grid Breaks)</span>
+            <span class="meta-text">Ref://05905beaf86411c108d52a32f67a5b9a.jpg (Cinematic Title Accent Grit)</span>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT MECHANICS AND DOM HANDLING -->
+    <script>
+        let isGalleryExpanded = false;
+
+        function toggleExtendedGalleryItems() {
+            const extendedContainer = document.getElementById('extended-gallery-slots');
+            const toggleButton = document.getElementById('gallery-toggle-action');
+
+            if (!isGalleryExpanded) {
+                // Perform structural layout display changes
+                extendedContainer.style.display = 'grid';
+                toggleButton.innerText = 'Collapse Matrix View';
+                // Automatically scroll into view smoothly
+                extendedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                isGalleryExpanded = true;
+            } else {
+                extendedContainer.style.display = 'none';
+                toggleButton.innerText = 'Expand Matrix View';
+                document.getElementById('collage-page').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                isGalleryExpanded = false;
+            }
+        }
+    </script>
+</body>
+</html>
