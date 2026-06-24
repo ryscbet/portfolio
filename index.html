@@ -1,33 +1,31 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scarlett's Portfolio</title>
-    <!-- Soft, whimsical, and cute Google Fonts -->
+    <!-- Fonts blending Mean Girls Burn-Book style handwriting & Gossip Girl luxury fashion editorial typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Gaegu:wght@400;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Quicksand:wght@500;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        /* DESIGN SYSTEM & CUSTOM VARIABLES */
+        /* DESIGN SYSTEM & NAVY/LIGHT PINK PALETTE */
         :root {
-            /* Original color palette from text layers & images[cite: 1] */
-            --bg-color: #fbfbf9; 
-            --text-color: #111111;
-            --retro-pink: #ff007f;     /* From 0142728eff8ff4a02f1641924a2fc91d.webp */
-            --grungy-warm: #b85a1c;    /* From 05905beaf86411c108d52a32f67a5b9a_2.jpg */
-            --organic-green: #4a5d4e;  /* From 97cdd2e9b32759d6a7c8bd7b5d564988.jpg */
-            --card-bg-fallback: #f0efe9;
+            --bg-color: #0b1d3a;        /* Deep luxury Navy Blue */
+            --text-color: #f7f9fc;      /* Soft off-white / Cream */
+            --light-pink: #fbc5d8;      /* Soft, muted pastel pink - strictly NO neon */
+            --muted-rose: #d4a5b8;      /* Elegant dusty rose for secondary accents */
+            --card-overlay: #132a4f;    /* Slightly lighter navy for grid depth */
             
-            /* Whimsical, soft typography configuration */
-            --font-display: 'Fredoka', sans-serif; /* Catchy, cute, rounded title font */
-            --font-body: 'Quicksand', sans-serif;   /* Soft, clean sans-serif */
-            --font-hand: 'Gaegu', cursive;         /* Girly, handwritten touch */
+            /* Typography Inspired by High-Fashion Editorial & Cult Classics */
+            --font-display: 'DM Serif Display', serif; /* Catchy, upscale Gossip Girl title aesthetic */
+            --font-body: 'Quicksand', sans-serif;       /* Clean, soft sans-serif for legibility */
+            --font-accent: 'Caveat', cursive;          /* Girly, handwritten touch reminiscent of Mean Girls notes */
             
-            --brutalist-border: 2px solid var(--text-color);
-            --thick-border: 4px solid var(--text-color);
-            --scrapbook-shadow: 5px 5px 0px rgba(17, 17, 17, 0.12);
+            --brutalist-border: 2px solid var(--light-pink);
+            --thick-border: 4px solid var(--light-pink);
+            --soft-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         /* RESET & BASE STYLES */
@@ -49,7 +47,7 @@
             overflow-x: hidden;
         }
 
-        /* RESPONSIVE NAVIGATION */
+        /* SCALE-FRIENDLY RESPONSIVE NAV */
         .editorial-nav {
             position: fixed;
             top: 0;
@@ -59,8 +57,8 @@
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             border-bottom: var(--brutalist-border);
-            background-color: rgba(251, 251, 249, 0.9);
-            backdrop-filter: blur(10px);
+            background-color: rgba(11, 29, 58, 0.9);
+            backdrop-filter: blur(12px);
             z-index: 100;
         }
 
@@ -71,7 +69,8 @@
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.85rem;
-            font-family: var(--font-display);
+            font-family: var(--font-body);
+            letter-spacing: 1px;
         }
 
         .nav-block:not(:last-child) {
@@ -79,40 +78,42 @@
         }
 
         .nav-block a {
-            color: var(--text-color);
+            color: var(--light-pink);
             text-decoration: none;
             transition: color 0.2s ease, transform 0.2s ease;
         }
 
         .nav-block a:hover {
-            color: var(--retro-pink);
-            transform: scale(1.05);
+            color: #ffffff;
+            transform: translateY(-1px);
         }
 
-        /* SCRAPBOOK CUTOUT ACCENTS */
+        /* CUTE SCRAPBOOK ACCENTS */
         .floating-note {
             position: absolute;
-            background-color: #fff7ad;
-            border: var(--brutalist-border);
-            padding: 0.8rem 1.2rem;
-            font-size: 1rem;
-            font-family: var(--font-hand);
+            background-color: var(--light-pink);
+            color: var(--bg-color);
+            border: 1px solid var(--light-pink);
+            padding: 0.6rem 1.2rem;
+            font-size: 1.4rem;
+            font-family: var(--font-accent);
             font-weight: 700;
             max-width: 180px;
-            box-shadow: var(--scrapbook-shadow);
+            box-shadow: var(--soft-shadow);
             z-index: 10;
-            transform: rotate(-3deg);
+            transform: rotate(-4deg);
             pointer-events: none;
-            border-radius: 12px;
+            border-radius: 8px;
         }
 
-        .floating-note.pink {
-            background-color: #ffc4e1;
-            transform: rotate(4deg);
-            color: var(--retro-pink);
+        .floating-note.alt-angle {
+            background-color: transparent;
+            color: var(--light-pink);
+            border: var(--brutalist-border);
+            transform: rotate(5deg);
         }
 
-        /* PAGE 1: MAIN LANDING SCREEN (WITH BACKGROUND IMAGE OVERLAY) */
+        /* PAGE 1: LANDING WITH PHOTO BACKGROUND */
         .landing-screen {
             min-height: 100vh;
             display: flex;
@@ -123,18 +124,17 @@
             z-index: 1;
         }
 
-        /* Insertable Photo Background Cover Layer */
+        /* Insertable Photo Layer */
         .landing-bg-cover {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* Replace the URL token with your choice photo asset path */
             background-image: url('insert-your-photo-here.jpg');
             background-size: cover;
             background-position: center;
-            opacity: 0.12; /* Kept soft and light so typography remains perfectly readable */
+            opacity: 0.15; /* Keeps the portrait backdrop soft and deeply embedded into the navy background */
             z-index: -1;
             pointer-events: none;
         }
@@ -143,12 +143,13 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             width: 100%;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             border-bottom: var(--brutalist-border);
             padding-bottom: 1rem;
-            font-family: var(--font-display);
             text-transform: uppercase;
+            color: var(--light-pink);
+            letter-spacing: 1.5px;
         }
 
         .metadata-block:last-child {
@@ -162,17 +163,16 @@
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(3.2rem, 10vw, 9.5rem);
-            font-weight: 700;
-            line-height: 0.9;
-            text-transform: uppercase;
-            letter-spacing: -1px;
+            font-size: clamp(3rem, 9.5vw, 9rem);
+            font-weight: 400;
+            line-height: 0.95;
             color: var(--text-color);
         }
 
         .hero-title span {
-            color: var(--retro-pink);
+            color: var(--light-pink);
             display: block;
+            font-style: italic;
         }
 
         .landing-footer-meta {
@@ -181,10 +181,11 @@
             align-items: flex-end;
             border-top: var(--brutalist-border);
             padding-top: 1rem;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            font-family: var(--font-display);
             text-transform: uppercase;
+            color: var(--light-pink);
+            letter-spacing: 1px;
         }
 
         /* PAGE 2: ABOUT ME & THE FOUR PROJECTS */
@@ -207,20 +208,19 @@
 
         .about-header {
             font-family: var(--font-display);
-            font-size: clamp(2.2rem, 4.5vw, 4rem);
-            line-height: 1;
-            text-transform: uppercase;
-            color: var(--organic-green);
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            line-height: 1.05;
+            color: var(--light-pink);
         }
 
         .about-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
             align-self: center;
-            font-weight: 500;
+            opacity: 0.9;
         }
 
-        /* PROJECT TRACK LIST */
+        /* INTERACTIVE LIST TRACKS */
         .projects-list-track {
             display: flex;
             flex-direction: column;
@@ -246,7 +246,7 @@
             left: 0;
             width: 100%;
             height: 0%;
-            background-color: var(--retro-pink);
+            background-color: var(--light-pink);
             z-index: 1;
             transition: height 0.25s ease;
         }
@@ -260,34 +260,29 @@
         }
 
         .project-row:hover * {
-            color: #ffffff;
+            color: var(--bg-color);
             position: relative;
             z-index: 2;
         }
 
-        .project-row:hover .project-num {
-            color: #ffffff;
-        }
-
         .project-num {
             font-family: var(--font-display);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--grungy-warm);
+            font-size: 1.4rem;
+            color: var(--muted-rose);
+            font-style: italic;
         }
 
         .project-meta-title h3 {
             font-family: var(--font-display);
-            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-            text-transform: uppercase;
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem);
             line-height: 1.1;
             margin-bottom: 0.5rem;
         }
 
         .project-focus-text {
             font-size: 0.95rem;
-            opacity: 0.8;
-            max-width: 600px;
+            opacity: 0.85;
+            max-width: 650px;
         }
 
         .project-tags {
@@ -306,14 +301,14 @@
         .tag-pill {
             font-size: 0.75rem;
             padding: 0.3rem 0.9rem;
-            border: 2px solid currentColor;
+            border: 1px solid currentColor;
             text-transform: uppercase;
             font-weight: 700;
             border-radius: 20px;
-            font-family: var(--font-display);
+            letter-spacing: 0.5px;
         }
 
-        /* PAGE 3: THE CONNECTED INTERRUPTED MATRIX COLLAGE */
+        /* PAGE 3: SEAMLESS DYNAMIC MATRIX COLLAGE */
         .matrix-section {
             border-top: var(--thick-border);
             padding: 5rem 2rem;
@@ -331,11 +326,11 @@
 
         .matrix-header-box h2 {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 4.5rem);
-            text-transform: uppercase;
-            line-height: 1;
+            font-size: clamp(2rem, 5vw, 4.2rem);
+            color: var(--light-pink);
         }
 
+        /* Highly responsive, scale-friendly auto-fill display grid layout */
         .collage-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -343,29 +338,27 @@
             grid-auto-flow: row dense;
         }
 
-        /* Seamless layout adjustment handling scaling flawlessly */
         @media (min-width: 1400px) {
             .collage-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
-        /* Cute, soft placeholder image slots with subtle curves */
+        /* Soft grid item placeholders with clean design definitions */
         .matrix-slot {
-            background-color: var(--card-bg-fallback);
-            border: var(--brutalist-border);
+            background-color: var(--card-overlay);
+            border: 1px solid rgba(251, 197, 216, 0.2);
             position: relative;
             min-height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 3px 3px 0px rgba(17,17,17,0.04);
-            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 8px;
         }
 
         .matrix-slot::before {
-            content: '✿';
-            font-size: 1.8rem;
-            color: rgba(17, 17, 17, 0.12);
+            content: '✧';
+            font-size: 1.4rem;
+            color: rgba(251, 197, 216, 0.25);
         }
 
         .matrix-slot::after {
@@ -374,52 +367,50 @@
             bottom: 0.6rem;
             right: 0.8rem;
             font-size: 0.75rem;
-            color: rgba(17, 17, 17, 0.3);
+            color: rgba(251, 197, 216, 0.3);
             font-weight: 700;
         }
 
         .matrix-slot:hover {
-            transform: scale(1.03);
-            box-shadow: var(--scrapbook-shadow);
-            background-color: #ffffff;
-            border-color: var(--retro-pink);
+            transform: scale(1.02);
+            border-color: var(--light-pink);
+            background-color: #12284b;
         }
 
         .slot-tall { grid-row: span 2; min-height: 580px; }
         .slot-wide { grid-column: span 2; }
         @media (max-width: 600px) { .slot-wide { grid-column: span 1; } }
 
-        /* THE DISRUPTION BLOCKS */
+        /* MATRIX DISRUPTION ACCENT BLOCKS */
         .matrix-disruption {
             grid-column: span 2;
-            background-color: var(--text-color);
-            color: var(--bg-color);
+            background-color: var(--card-overlay);
+            color: var(--text-color);
             border: var(--brutalist-border);
             padding: 2.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             min-height: 280px;
-            box-shadow: var(--scrapbook-shadow);
             position: relative;
-            border-radius: 20px;
+            border-radius: 12px;
+            box-shadow: var(--soft-shadow);
         }
 
         @media (max-width: 600px) { .matrix-disruption { grid-column: span 1; } }
 
-        .matrix-disruption.green-variant { background-color: var(--organic-green); }
         .matrix-disruption.pink-variant {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            border: 3px solid var(--retro-pink);
+            background-color: var(--light-pink);
+            color: var(--bg-color);
+            border: 1px solid var(--light-pink);
         }
 
         .disruption-tag {
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
-            font-family: var(--font-display);
-            border-bottom: 2px dashed currentColor;
+            letter-spacing: 1px;
+            border-bottom: 1px dashed currentColor;
             padding-bottom: 2px;
             align-self: flex-start;
         }
@@ -427,7 +418,6 @@
         .disruption-title {
             font-family: var(--font-display);
             font-size: 2.2rem;
-            text-transform: uppercase;
             margin: 1.2rem 0 0.5rem 0;
             line-height: 1;
         }
@@ -442,27 +432,32 @@
             background: transparent;
             border: 2px solid currentColor;
             color: inherit;
-            font-family: var(--font-display);
-            font-size: 0.85rem;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             padding: 0.5rem 1.4rem;
             cursor: pointer;
             width: fit-content;
             transition: all 0.2s ease;
-            border-radius: 30px;
+            border-radius: 4px;
         }
 
         .disruption-action-btn:hover {
-            background-color: var(--retro-pink);
-            color: white;
-            border-color: var(--retro-pink);
-            transform: scale(1.05);
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border-color: var(--text-color);
         }
 
-        /* INLINE DIRECTLY CONNECTED EXPANSION ARCHITECTURE */
+        .matrix-disruption.pink-variant .disruption-action-btn:hover {
+            background-color: var(--bg-color);
+            color: var(--light-pink);
+            border-color: var(--bg-color);
+        }
+
+        /* CONTEXTUALLY INTEGRATED EXTENSION BLOCKS */
         .extended-matrix-stream {
-            display: none; /* Controlled inline directly inside parent container flow via runtime state manipulation */
+            display: none; /* Managed directly inline to preserve old collage framework mapping seamlessly */
         }
 
         .expansion-control-container {
@@ -473,52 +468,49 @@
         }
 
         .expand-action-trigger {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+            background-color: transparent;
+            color: var(--light-pink);
             border: var(--brutalist-border);
             font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1.15rem;
             text-transform: uppercase;
-            padding: 1.2rem 3.5rem;
+            padding: 1rem 3.5rem;
             cursor: pointer;
-            box-shadow: var(--scrapbook-shadow);
             transition: all 0.2s ease;
-            border-radius: 40px;
+            border-radius: 4px;
         }
 
         .expand-action-trigger:hover {
-            background-color: var(--retro-pink);
-            color: #ffffff;
-            transform: translateY(-2px);
+            background-color: var(--light-pink);
+            color: var(--bg-color);
+            transform: translateY(-1px);
         }
 
         /* PAGE 4: CONTACT SCREEN */
         .contact-footer-screen {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+            background-color: #061124;
+            color: var(--text-color);
             padding: 6rem 2rem 2rem 2rem;
             border-top: var(--thick-border);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 70vh;
+            min-height: 75vh;
         }
 
         .contact-header-title {
             font-family: var(--font-display);
-            font-size: clamp(2.8rem, 8vw, 7rem);
-            text-transform: uppercase;
-            line-height: 0.9;
+            font-size: clamp(2.6rem, 7.5vw, 6.5rem);
+            line-height: 0.95;
             margin-bottom: 4rem;
-            color: #ffffff;
+            color: var(--light-pink);
         }
 
         .contact-links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 3rem;
-            border-top: 1px solid #333333;
+            border-top: 1px solid #13243f;
             padding-top: 3rem;
             margin-bottom: 5rem;
         }
@@ -526,38 +518,38 @@
         .contact-channel h4 {
             font-size: 0.85rem;
             text-transform: uppercase;
-            color: #888888;
+            color: var(--muted-rose);
             margin-bottom: 1rem;
-            font-family: var(--font-display);
+            letter-spacing: 1px;
         }
 
         .contact-channel a, .contact-channel p {
             font-family: var(--font-display);
-            font-size: clamp(1.3rem, 2.8vw, 2.2rem);
-            color: var(--bg-color);
+            font-size: clamp(1.3rem, 2.6vw, 2.2rem);
+            color: var(--text-color);
             text-decoration: none;
             word-break: break-all;
             transition: color 0.2s ease;
         }
 
         .contact-channel a:hover {
-            color: var(--retro-pink);
+            color: var(--light-pink);
         }
 
         .credit-provenance-footer {
-            border-top: 1px solid #222222;
+            border-top: 1px solid #13243f;
             padding-top: 2rem;
             font-size: 0.75rem;
             line-height: 1.6;
-            color: #666666;
+            color: #516481;
         }
     </style>
 </head>
 <body>
 
-    <!-- ASYMMETRIC NAV -->
+    <!-- SCALE-FRIENDLY NAVIGATION LINKS -->
     <nav class="editorial-nav">
-        <div class="nav-block"><a href="#landing-page">Scarlett Yang</a></div>
+        <div class="nav-block"><a href="#landing-page">Scarlett</a></div>
         <div class="nav-block"><a href="#projects-index">Index</a></div>
         <div class="nav-block"><a href="#matrix-view">Collage</a></div>
     </nav>
@@ -569,12 +561,12 @@
             <!-- Insertable Photo Layer -->
             <div class="landing-bg-cover"></div>
 
-            <div class="floating-note" style="top: 25%; right: 12%;">[ Visual Journal ]</div>
-            <div class="floating-note pink" style="bottom: 28%; left: 6%;">Say hello! ✿</div>
+            <div class="floating-note" style="top: 24%; right: 14%;">[ Visual Diary ]</div>
+            <div class="floating-note alt-angle" style="bottom: 26%; left: 8%;">XOXO ✧</div>
 
             <div class="metadata-grid">
-                <div class="metadata-block">Creative Direction & Frameworks</div>
-                <div class="metadata-block">Hong Kong // Kowloon</div>
+                <div class="metadata-block">Creative Direction & Frames</div>
+                <div class="metadata-block">Hong Kong Portfolio</div>
             </div>
 
             <div class="hero-title-wrapper">
@@ -582,7 +574,7 @@
             </div>
 
             <div class="landing-footer-meta">
-                <div>Selected Documentations</div>
+                <div>Selected Visual Works</div>
                 <div>©2026 Grid System</div>
             </div>
         </section>
@@ -591,9 +583,9 @@
         <section id="projects-index" class="about-projects-screen">
             
             <div class="about-section">
-                <h2 class="about-header">A whimsical look through people, frames, and places.</h2>
+                <h2 class="about-header">A thoughtful translation of mood and human interactions.</h2>
                 <p class="about-text">
-                    Operating at the intersection of intentional layout tracks and fluid layout configurations, this site displays ongoing photo series across four distinct directions[cite: 1].
+                    Structuring imagery through editorial line segments and continuous media cells, this site indexes localized photo series across four strategic content paths[cite: 1].
                 </p>
             </div>
 
@@ -606,7 +598,7 @@
                         <p class="project-focus-text">Volunteer photography for events, projects, and organizations impacting people and the earth for a positive change[cite: 1].</p>
                     </div>
                     <div class="project-tags">
-                        <span class="tag-pill">Volunteer</span>
+                        <span class="tag-pill">Social</span>
                         <span class="tag-pill">Impact</span>
                     </div>
                 </div>
@@ -616,7 +608,7 @@
                     <div class="project-num">02 /</div>
                     <div class="project-meta-title">
                         <h3>CaptureVibe</h3>
-                        <p class="project-focus-text">Event photography capturing energy, motion, split-second snapshots, and genuine group interactions[cite: 1].</p>
+                        <p class="project-focus-text">Event photography capturing energy, motion, split-second snaps, and authentic crowd dynamics[cite: 1].</p>
                     </div>
                     <div class="project-tags">
                         <span class="tag-pill">Events</span>
@@ -629,11 +621,11 @@
                     <div class="project-num">03 /</div>
                     <div class="project-meta-title">
                         <h3>CaptureCations</h3>
-                        <p class="project-focus-text">A spatial collection dedicated to locations, cityscape structures, environments, and nature[cite: 1].</p>
+                        <p class="project-focus-text">A spatial collection focusing on locations, urban architectural lines, industrial landscapes, and nature[cite: 1].</p>
                     </div>
                     <div class="project-tags">
                         <span class="tag-pill">Spaces</span>
-                        <span class="tag-pill">Locations</span>
+                        <span class="tag-pill">Urban</span>
                     </div>
                 </div>
 
@@ -642,7 +634,7 @@
                     <div class="project-num">04 /</div>
                     <div class="project-meta-title">
                         <h3>CaptureYou</h3>
-                        <p class="project-focus-text">Identity framings centered around close portraits and beautiful candid portrait sessions[cite: 1].</p>
+                        <p class="project-focus-text">Identity framings balanced across styled professional sets and beautiful candid portrait captures[cite: 1].</p>
                     </div>
                     <div class="project-tags">
                         <span class="tag-pill">Portraits</span>
@@ -652,94 +644,94 @@
             </div>
         </section>
 
-        <!-- PAGE 3: THE CONNECTED INTERRUPTED MATRIX COLLAGE -->
+        <!-- PAGE 3: CONNECTED INTERRUPTED MATRIX COLLAGE -->
         <section id="matrix-view" class="matrix-section">
             
             <div class="matrix-header-box">
-                <h2>The Photo Grid</h2>
-                <div class="project-num" style="font-size: 0.95rem;">Matrix Stream (20-26 Elements)</div>
+                <h2>The Image Matrix</h2>
+                <div class="project-num" style="font-size: 0.9rem;">Initial Array (20-26 Elements)</div>
             </div>
 
-            <!-- Single coherent connected grid framework -->
+            <!-- Single connected framework grid handling additions fluidly inside layout -->
             <div class="collage-grid">
-                <div class="matrix-slot" data-index="✿-01"></div>
-                <div class="matrix-slot slot-tall" data-index="✿-02"></div>
-                <div class="matrix-slot" data-index="✿-03"></div>
-                <div class="matrix-slot slot-wide" data-index="✿-04"></div>
+                <div class="matrix-slot" data-index="✧-01"></div>
+                <div class="matrix-slot slot-tall" data-index="2-02"></div>
+                <div class="matrix-slot" data-index="✧-03"></div>
+                <div class="matrix-slot slot-wide" data-index="✧-04"></div>
                 
                 <!-- DISRUPTION 1 -->
                 <div class="matrix-disruption" id="disruption-1">
-                    <div class="disruption-tag">Series Break 01</div>
+                    <div class="disruption-tag">Series Interrupt // 01</div>
                     <div>
                         <h3 class="disruption-title">CaptureKind</h3>
-                        <p class="disruption-desc">Humanitarian stories and earth initiatives project segment[cite: 1].</p>
+                        <p class="disruption-desc">Humanitarian narratives and environmental visual tracking blocks[cite: 1].</p>
                     </div>
-                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureKind assets')">Isolate Series</button>
+                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureKind Series')">Isolate Focus</button>
                 </div>
 
-                <div class="matrix-slot" data-index="✿-05"></div>
-                <div class="matrix-slot" data-index="✿-06"></div>
-                <div class="matrix-slot slot-wide" data-index="✿-07"></div>
+                <div class="matrix-slot" data-index="✧-05"></div>
+                <div class="matrix-slot" data-index="2-06"></div>
+                <div class="matrix-slot slot-wide" data-index="✧-07"></div>
                 
                 <!-- DISRUPTION 2 -->
-                <div class="matrix-disruption green-variant" id="disruption-2">
-                    <div class="disruption-tag">Series Break 02</div>
+                <div class="matrix-disruption pink-variant" id="disruption-2">
+                    <div class="disruption-tag">Series Interrupt // 02</div>
                     <div>
                         <h3 class="disruption-title">CaptureVibe</h3>
-                        <p class="disruption-desc">Genuine event frames and candid group dynamics track[cite: 1].</p>
+                        <p class="disruption-desc">Live community actions and split-second crowd sync tracking[cite: 1].</p>
                     </div>
-                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureVibe assets')">Isolate Series</button>
+                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureVibe Series')">Isolate Focus</button>
                 </div>
 
-                <div class="matrix-slot slot-tall" data-index="✿-08"></div>
-                <div class="matrix-slot" data-index="✿-09"></div>
-                <div class="matrix-slot" data-index="✿-10"></div>
-                <div class="matrix-slot" data-index="✿-11"></div>
+                <div class="matrix-slot slot-tall" data-index="✧-08"></div>
+                <div class="matrix-slot" data-index="✧-09"></div>
+                <div class="matrix-slot" data-index="✧-10"></div>
+                <div class="matrix-slot" data-index="✧-11"></div>
 
                 <!-- DISRUPTION 3 -->
-                <div class="matrix-disruption pink-variant" id="disruption-3">
-                    <div class="disruption-tag">Series Break 03</div>
+                <div class="matrix-disruption" id="disruption-3">
+                    <div class="disruption-tag">Series Interrupt // 03</div>
                     <div>
                         <h3 class="disruption-title">CaptureCations</h3>
-                        <p class="disruption-desc">Architecture layout focus and spatial study logs[cite: 1].</p>
+                        <p class="disruption-desc">Spatial boundaries and architectural line studies logs[cite: 1].</p>
                     </div>
-                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureCations assets')">Isolate Series</button>
+                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureCations Series')">Isolate Focus</button>
                 </div>
 
-                <div class="matrix-slot slot-wide" data-index="✿-12"></div>
-                <div class="matrix-slot" data-index="✿-13"></div>
-                <div class="matrix-slot slot-tall" data-index="✿-14"></div>
+                <div class="matrix-slot slot-wide" data-index="✧-12"></div>
+                <div class="matrix-slot" data-index="✧-13"></div>
+                <div class="matrix-slot slot-tall" data-index="✧-14"></div>
 
                 <!-- DISRUPTION 4 -->
-                <div class="matrix-disruption" id="disruption-4">
-                    <div class="disruption-tag">Series Break 04</div>
+                <div class="matrix-disruption pink-variant" id="disruption-4">
+                    <div class="disruption-tag">Series Interrupt // 04</div>
                     <div>
                         <h3 class="disruption-title">CaptureYou</h3>
-                        <p class="disruption-desc">Candid human portrait integration stream[cite: 1].</p>
+                        <p class="disruption-desc">Identity layout focus and candid close portraits integration[cite: 1].</p>
                     </div>
-                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureYou assets')">Isolate Series</button>
+                    <button class="disruption-action-btn" onclick="alert('Viewing CaptureYou Series')">Isolate Focus</button>
                 </div>
 
-                <div class="matrix-slot" data-index="✿-15"></div>
-                <div class="matrix-slot" data-index="✿-16"></div>
-                <div class="matrix-slot" data-index="✿-17"></div>
-                <div class="matrix-slot slot-wide" data-index="✿-18"></div>
+                <div class="matrix-slot" data-index="✧-15"></div>
+                <div class="matrix-slot" data-index="✧-16"></div>
+                <div class="matrix-slot" data-index="✧-17"></div>
+                <div class="matrix-slot slot-wide" data-index="✧-18"></div>
 
-                <!-- CONTINUOUS REVELATION TILES (Directly embedded inside same grid structure) -->
-                <div class="matrix-slot extended-matrix-stream" data-index="✿-19"></div>
-                <div class="matrix-slot slot-wide extended-matrix-stream" data-index="✿-20"></div>
-                <div class="matrix-slot extended-matrix-stream" data-index="✿-21"></div>
-                <div class="matrix-slot slot-tall extended-matrix-stream" data-index="✿-22"></div>
-                <div class="matrix-slot extended-matrix-stream" data-index="✿-23"></div>
-                <div class="matrix-slot extended-matrix-stream" data-index="✿-24"></div>
-                <div class="matrix-slot slot-wide extended-matrix-stream" data-index="✿-25"></div>
-                <div class="matrix-slot extended-matrix-stream" data-index="✿-26"></div>
-                <div class="matrix-slot extended-matrix-stream" data-index="✿-27"></div>
-                <div class="matrix-slot extended-matrix-stream" data-index="✿-28"></div>
-                <div class="matrix-slot extended-matrix-stream" data-index="✿-29"></div>
-                <div class="matrix-slot slot-tall extended-matrix-stream" data-index="✿-30"></div>
+                <!-- SEAMLESSLY ATTACHED EXTENSION CELLS (Revealed inside parent layout tracking) -->
+                <div class="matrix-slot extended-matrix-stream" data-index="✧-19"></div>
+                <div class="matrix-slot slot-wide extended-matrix-stream" data-index="✧-20"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✧-21"></div>
+                <div class="matrix-slot slot-tall extended-matrix-stream" data-index="✧-22"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✧-23"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="2-24"></div>
+                <div class="matrix-slot slot-wide extended-matrix-stream" data-index="✧-25"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✧-26"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✧-27"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✧-28"></div>
+                <div class="matrix-slot extended-matrix-stream" data-index="✧-29"></div>
+                <div class="matrix-slot slot-tall extended-matrix-stream" data-index="✧-30"></div>
 
-                <!-- CONTROL ROW TRIGGER -->
+                <!-- ATTACHED TOGGLE BOX -->
                 <div class="expansion-control-container">
                     <button id="matrix-expansion-trigger" class="expand-action-trigger" onclick="toggleMatrixExpansion()">Expand Matrix</button>
                 </div>
@@ -750,15 +742,15 @@
         <!-- PAGE 4: CONTACT SCREEN -->
         <footer id="contact-gate" class="contact-footer-screen">
             <div class="contact-top-wrapper">
-                <h2 class="contact-header-title">Let's create<br>together ✿</h2>
+                <h2 class="contact-header-title">Let's craft<br>the next series.</h2>
                 
                 <div class="contact-links-grid">
                     <div class="contact-channel">
-                        <h4>Direct Line</h4>
+                        <h4>Direct Signal</h4>
                         <p><a href="tel:+85253403935">+852 53403935</a></p>
                     </div>
                     <div class="contact-channel">
-                        <h4>Email Intake</h4>
+                        <h4>Secure Mailbox</h4>
                         <p><a href="mailto:SCARLETTYANG.RS@GMAIL.COM">SCARLETTYANG.RS@GMAIL.COM</a></p>
                     </div>
                     <div class="contact-channel">
@@ -768,7 +760,7 @@
                 </div>
             </div>
 
-            <!-- SPECIFIED PROVENANCE ACCREDITATION -->
+            <!-- PROVENANCE METADATA LOG -->
             <div class="credit-provenance-footer">
                 Informed by: 5a58d3cf1b3ce97eede6048f7237bc6c_2.jpg, 48e014ad105d05a0bcb8f2cc8b3486d4_2.webp, 188b7f880cc08d39540e64450f5b7b90_2.webp, 05905beaf86411c108d52a32f67a5b9a_2.jpg, 75f5f76d70f3d359b96b84a0823a2f7f.jpg, 97cdd2e9b32759d6a7c8bd7b5d564988.jpg, and 0142728eff8ff4a02f1641924a2fc91d.webp
             </div>
@@ -776,27 +768,25 @@
 
     </main>
 
-    <!-- EXPANSION RUNTIME ARCHITECTURE -->
+    <!-- INLINE STATE EXTENSION ACTIONS -->
     <script>
         let isMatrixExpandedState = false;
 
         function toggleMatrixExpansion() {
-            // Select elements targeting connected grid expansion items directly
-            const extraSlots = document.querySelectorAll('.extended-matrix-stream');
+            const extraTiles = document.querySelectorAll('.extended-matrix-stream');
             const expansionBtn = document.getElementById('matrix-expansion-trigger');
 
             if (!isMatrixExpandedState) {
-                // Smooth change to standard display within same element framework
-                extraSlots.forEach(slot => {
-                    slot.style.display = 'flex';
+                // Modifies hidden cells within standard grid container seamlessly
+                extraTiles.forEach(tile => {
+                    tile.style.display = 'flex';
                 });
                 expansionBtn.innerText = 'Collapse Matrix';
-                // Targets the first newly loaded slot for a seamless view adjustment
-                extraSlots[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                extraTiles[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
                 isMatrixExpandedState = true;
             } else {
-                extraSlots.forEach(slot => {
-                    slot.style.display = 'none';
+                extraTiles.forEach(tile => {
+                    tile.style.display = 'none';
                 });
                 expansionBtn.innerText = 'Expand Matrix';
                 document.getElementById('matrix-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
